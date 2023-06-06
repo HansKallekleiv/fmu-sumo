@@ -8,6 +8,7 @@ from fmu.sumo.explorer.pit import Pit
 _CHILD_FIELDS = [
     "_id",
     "data.name",
+    "data.content",
     "data.tagname",
     "data.time",
     "data.format",
@@ -71,17 +72,16 @@ class ChildCollection(DocumentCollection):
     def stages(self) -> List[str]:
         """List of unique stages"""
         return self._get_field_values("fmu.context.stage.keyword")
-    
+
     @property
     def stratigraphic(self) -> List[str]:
         """List of unqiue object stratigraphic"""
         return self._get_field_values("data.stratigraphic")
-    
+
     @property
     def vertical_domain(self) -> List[str]:
         """List of unqiue object vertical domain"""
         return self._get_field_values("data.vertical_domain")
-
 
     def _init_query(self, doc_type: str, query: Dict = None) -> Dict:
         new_query = super()._init_query(doc_type, query)
